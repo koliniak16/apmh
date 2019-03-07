@@ -1,0 +1,49 @@
+
+<div class="attraction-list" style="font-size: 15px">
+  <table class="table table-striped table-hover table-dark">
+    <thead>
+      <th style="text-align: center">Nazwa</th>
+      <th style="text-align: center">Maksymalna ilość miejsc</th>
+      <th style="text-align: center">Sprawność</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+      <tbody>
+        <tr *ngFor="let attraction of attractions" style="text-align: center;" class="allign-bottom">
+          <td>{{attraction.name}}</td>
+          <td>{{attraction.maxSeats}}</td>
+          <td><p>{{attraction.is_out_of_order > 0 ? "Popsuty!" : "Sprawny!"}}</p></td>
+          <td><button class="btn btn-dark" (click)="askDelete(attraction)">Usuń</button></td>
+          <td><button class="btn btn-dark" (click)="updateAttraction(attraction)">Edytuj</button></td>
+          <td><button class="btn btn-dark" (click)="breakdownAttraction(attraction)">Zgłoś usterkę</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-dark" (click)="newAttraction()">Dodaj nową atrakcję</button>
+
+  </div>
+
+  <popup #popup1 (confirmClick)="processDelete()" (cancelClick)="noDelete()" style="font-size: 14px">Czy na pewno chcesz usunąć atrakcję {{_globals.attraction.name}}?<br></popup>
+
+  <popup #popup2 (confirmClick)="processBreakdown()" (cancelClick)="noBreakdown()" style="font-size: 14px">Wybierz pracownika, ktoremu chcesz przypisać naprawę.<br><br>
+  <select class="form-control" [(ngModel)]="worker.fullname" (ngModelChange)="onWorkerChange($event)">
+    <option></option>
+    <option *ngFor="let worker of workers" [value]="worker.worker.fullname">
+       {{worker.worker.fullname}}
+    </option>
+  </select>
+</popup>
+
+  <ng-template #elseBlock>
+    Sprawny!
+  </ng-template>
+
+  <ng-template #trueBlock>
+    Popsuty!
+  </ng-template>
+
+  <popup #popup3 style="font-size: 14px">{{this.errorPopup}}</popup>
+
+
+

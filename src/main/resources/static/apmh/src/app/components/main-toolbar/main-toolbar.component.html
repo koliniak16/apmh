@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand active" style="color:aliceblue">Apmh</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li [ngClass]="{'nav-item active': _globals.router_worker_list === 1, 'nav-item': _globals.router_worker_list === 0 }" *ngIf="_globals.user_kierownik">
+        <a class="nav-link pointer" (click)="worker_list()">Zarządzanie użytkownikami</a>
+      </li>
+      <li [ngClass]="{ 'nav-item active': _globals.router_attraction_list === 1, 'nav-item': _globals.router_attraction_list === 0 }" *ngIf="_globals.user_kierownik">
+        <a class="nav-link pointer" (click)="attraction_list()">Zarządzanie atrakcjami</a>
+      </li>
+      <li [ngClass]="{ 'nav-item active': _globals.router_shift_management === 1, 'nav-item': _globals.router_shift_management === 0 }" *ngIf="_globals.user_kierownik">
+        <a class="nav-link pointer" (click)="shift_management()">Rozkład pracy</a>
+      </li>
+      <li [ngClass]="{ 'nav-item active': _globals.router_technic_site === 1, 'nav-item': _globals.router_technic_site === 0 }" *ngIf="_globals.user_technik">
+        <a class="nav-link pointer" (click)="technic_site()">Naprawa urządzeń</a>
+      </li>
+      <li [ngClass]="{ 'nav-item active': _globals.router_taken_seats === 1, 'nav-item': _globals.router_taken_seats === 0 }" *ngIf="_globals.user_pracownik">
+          <a class="nav-link pointer" (click)="taken_seats()">Frekwencja</a>
+      </li>
+      <li [ngClass]="{ 'nav-item active': _globals.router_request_site === 1, 'nav-item': _globals.router_request_site === 0 }" *ngIf="_globals.user_pracownik">
+            <a class="nav-link pointer" (click)="request_site()">Wnioski</a>
+      </li>
+      <li [ngClass]="{ 'nav-item active': _globals.router_request_check === 1, 'nav-item': _globals.router_request_check === 0 }" *ngIf="_globals.user_kierownik">
+          <a class="nav-link pointer" (click)="request_check()">Wnioski</a>
+      </li>
+      <li *ngIf="_globals.is_logged_in" class="nav-item">
+        <a class="nav-link pointer" (click)=logOut()>Wyloguj</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+

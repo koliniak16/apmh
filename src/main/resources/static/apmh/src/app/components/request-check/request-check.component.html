@@ -1,0 +1,23 @@
+<div class="request-site">
+    <table class="table table-dark">
+        <thead>
+            <th style="text-align: center">Data Zmiany</th>
+            <th style="text-align: center">Pracownik</th>
+            <th style="text-align: center">Przed wnioskiem</th>
+            <th style="text-align: center">Wniosek o</th>
+            <th></th>
+            <th></th>
+          </thead>
+        <tbody>
+          <tr *ngFor="let request of requests; let in = index">
+            <td><input class="form-control" type="text" name="attractionname-{{in}}" style="text-align: center" [(ngModel)]="request.shift.date" disabled></td>
+            <td><input class="form-control" type="text" name="attractionname-{{in}}" style="text-align: center" [(ngModel)]="request.worker.fullname" disabled></td>
+            <td><input class="form-control" type="text" name="attractionname-{{in}}" style="text-align: center" [(ngModel)]="request.shift.attraction.name" disabled></td>
+            <td><input class="form-control" type="text" name="attractionname-{{in}}" style="text-align: center" [(ngModel)]="request.attraction.name" disabled></td>
+            <td><button class="btn btn-dark" (click)="forbid(request)">Odrzuć</button></td>
+            <td><button class="btn btn-dark" (click)="accept(request)">Przyjmij</button></td>
+        </tbody>
+    </table>
+    </div>
+
+    <popup style="font-size: 14px">{{this.errorPopup}}</popup>

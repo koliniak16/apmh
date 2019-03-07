@@ -1,0 +1,28 @@
+
+<div class="worker-list" style="font-size: 14px">
+  <table class="table table-striped table-hover table-dark">
+    <thead>
+      <th style="text-align: center">Imię</th>
+      <th style="text-align: center">Nazwisko</th>
+      <th style="text-align: center">Pozycja</th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let worker of workers" style="text-align: center;" class="allign-bottom">
+        <td>{{worker.worker.name}}</td>
+        <td>{{worker.worker.surname}}</td>
+        <td>{{worker.role.position}}</td>
+        <td><button class="btn btn-dark" (click)="askDelete(worker)">Usuń</button></td>
+        <td><button class="btn btn-dark" (click)="updateWorker(worker)">Edytuj</button></td>
+      </tr>
+    </tbody>
+  </table>
+    <button class="btn btn-dark" (click)="newWorker()">Dodaj nowego pracownika</button>
+</div>
+
+<popup #popup1 (confirmClick)="processDelete()" (cancelClick)="noDelete()" style="font-size: 14px">Czy na pewno chcesz usunąć pracownika {{_globals.workerRole.worker.name}} {{_globals.workerRole.worker.surname}}?</popup>
+
+
+<popup #popup2 style="font-size: 14px">{{this.errorPopup}}</popup>
+

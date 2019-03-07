@@ -1,0 +1,42 @@
+
+<div class="shift-management">
+  <div class=row>
+    <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group theme-dark-blue">
+        <input class="form-control"
+              readonly
+              (bsValueChange)="whenChange($event)"
+               placeholder="wybierz dzień"
+               bsDatepicker
+               [minDate]="minDate"
+               [daysDisabled]="[6,0]"
+               #dp="bsDatepicker"
+               [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue' }">
+      </div>
+      <div class="form-group" style="margin-right:10px">
+          <button class="btn btn-primary" style="height:50px" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen">Wybierz dzień</button>
+          <button class="btn btn-success" style="height:50px; margin-left:20px" (click)="updateShifts()">Zaktualizuj</button>
+      </div>
+  </div>
+
+  <div>
+  <table>
+    <tr *ngFor="let shift of shifts; let in = index">
+      <td><input class="form-control" type="text" name="attractionname-{{in}}" [(ngModel)]="shift.attraction.name" disabled></td>
+      <td><select class="form-control" [(ngModel)]="shift.worker.fullname" (ngModelChange)="onWorkerChange($event, in)">
+          <option></option>
+          <option *ngFor="let worker of workers" [value]="worker.worker.fullname">
+           {{worker.worker.fullname}}
+          </option>
+      </select></td>
+    </tr>
+  </table>
+  </div>
+
+</div>
+
+
+<popup #popup1 (confirmClick)="processUpdate()" (cancelClick)="noUpdate()" style="font-size: 14px">Nie wszystkie stanowiska zostały obsadzone, czy kontynuować?</popup>
+
+<popup #popup2 style="font-size: 14px">{{this.errorPopup}}</popup>
+
+<popup #popup3 style="font-size: 14px">Aktualizacja zakończona sukcesem!</popup>

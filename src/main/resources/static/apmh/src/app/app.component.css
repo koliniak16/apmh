@@ -1,0 +1,11 @@
+html {
+  background: url(../assets/amusement_park_background.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 754px;
+  min-width: 1024px;
+}
+
+

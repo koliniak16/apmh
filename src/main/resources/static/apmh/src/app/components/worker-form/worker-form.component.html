@@ -1,0 +1,61 @@
+<div class="worker-form">
+
+  <form (ngSubmit)="processForm()">
+    <div class="form group">
+      <label for="name" class="top">Imię</label>
+      <input type="text" id="name" minlength="5" maxlength="20" name="name" class="form-control"
+       [(ngModel)]="this.name" #nameInput = "ngModel">
+      <div class="error" *ngIf="nameInput.invalid && nameInput.dirty">Imię nie może być krótsze niz 5 znaków</div>
+    </div>
+    <div class="form group">
+      <label for="surname" class="top">Nazwisko</label>
+      <input type="text" id="surname" minlength="5" maxlength="20" name="surname" class="form-control"
+       [(ngModel)]="this.surname" #surnameInput = "ngModel">
+      <div class="error" *ngIf="surnameInput.invalid && surnameInput.dirty">Nazwisko nie może być krótsze niz 5 znaków</div>
+    </div>
+    <div class="form group">
+      <label for="username" class="top">Nazwa Użytkownika</label>
+      <input type="text" id="username" minlength="5" maxlength="20" name="username" class="form-control"
+       [(ngModel)]="this.username" #usernameInput = "ngModel">
+      <div class="error" *ngIf="usernameInput.invalid && usernameInput.dirty">Nazwa użytkownika nie może być krótsza niz 5 znaków</div>
+    </div>
+    <div *ngIf="this._globals.router_worker_form_add; else updateBlock" class="form group">
+      <label for="password" class="top">Hasło</label>
+      <input type="text" id="password" minlength="5" maxlength="20" name="password" class="form-control" id="disabledInput"
+       [(ngModel)]="this.password" #passwordInput = "ngModel">
+      <div class="error" *ngIf="passwordInput.invalid && passwordInput.dirty">Hasło nie może być krótsze niz 5 znaków</div>
+    </div>
+    <div class="form group">
+      <label for="phoneNumber" class="top">Numer telefonu (w formacie 48*********) </label>
+      <input type="text" id="phoneNumber" minlength="11" maxlength="20" name="phoneNumber" class="form-control"
+       [(ngModel)]="this.phoneNumber" #phoneNumberInput = "ngModel">
+      <div class="error" *ngIf="phoneNumberInput.invalid && phoneNumberInput.dirty">Numer telefonu nie może być krótszy niż 11 znaków</div>
+    </div>
+    <div class="form-group" class="top">
+      <label for="position">Stanowisko</label>
+      <select class="form-control" id="position" name="position" minlength="5" [(ngModel)]="this.position"
+       #positionInput="ngModel">
+        <option>Kierownik</option>
+        <option>Pracownik</option>
+        <option>Technik</option>
+      </select>
+    </div>
+    <div class ="row">
+    <div class="form-group" *ngIf="this.name.length > 4 && this.surname.length > 4 && this.username.length > 4
+      && this.password.length > 4 && this.position && this.phoneNumber.length > 10">
+    <input type="submit" value="Akceptuj" class="btn btn-success" style="margin-top:10px">
+    </div>
+    <input type="button" value="Zaniechaj" class="btn btn-danger" (click)="cancel()" style="margin-left: 30px; margin-top:10px">
+    </div>
+  </form>
+
+</div>
+
+<ng-template #updateBlock>
+  <label for="password" class="top">Hasło</label>
+  <input type="text" id="password" name="password" class="form-control" disabled>
+</ng-template>
+
+
+
+<popup style="font-size: 14px">{{this.errorPopup}}</popup>
